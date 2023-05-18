@@ -27,7 +27,7 @@ export const postKeyword = async (req:Request,res:Response)=>{
             })
             keyword.save()
         })
-        console.log(await Keyword.find({_id:idUser}).count())
+        console.log(await Keyword.find({_id:keywordStore._id}).count())
         res.status(200).send(keywordStore._id)
     }else{
         res.status(400).send("syntax is {'data':['keyword1','keyword2',.....]}")
