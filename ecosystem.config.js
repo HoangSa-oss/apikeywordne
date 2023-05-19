@@ -9,8 +9,7 @@ module.exports = {
     name   : "crawler",
     script : "npm",
     args:"run crawler",
-    instances : "2",
-    exec_mode : "cluster"
+
   },
   {
     name   : "addQueue",
