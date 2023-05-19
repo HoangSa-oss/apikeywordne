@@ -15,7 +15,7 @@ const addQueue = async  ()=>{
 
     data.map(async(x:any)=>{
         queueKeyWordApi.add({...x.toObject(),"addQueued":0})
-        await Keyword.updateOne(x._id,{addQueue:true})
+        await Keyword.updateOne(x.toObject()._id,{addQueue:true})
     })  
     console.log(await queueKeyWordApi.count())
     } catch (error) {
