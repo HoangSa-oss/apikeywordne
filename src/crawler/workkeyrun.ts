@@ -10,9 +10,25 @@ process.setMaxListeners(0);
 
 const run = async()=>{
     await mongoose.connect("mongodb://127.0.0.1:27017/apitiktok", {});
-    console.log('conca')
-    for(let i=0;i<5;i++){
-        await tiktokProfile(i)
+    if (cluster.isPrimary) {
+        console.log(`Primary ${process.pid} is running`);
+      
+        // Fork workers.
+        for (let i = 0; i <2 ; i++) {
+          cluster.fork();
+        }
+      
+        cluster.on('exit', (worker, code, signal) => {
+          console.log(`worker ${worker.process.pid} died`);
+        });
+      } else {
+        // Workers can share any TCP connection
+        // In this case it is an HTTP server
+        for(let i=0;i<5;i++){
+            await tiktokProfile(i)
+        }
+        console.log(`Worker ${process.pid} started`);
     }
+   
 }
 run()
