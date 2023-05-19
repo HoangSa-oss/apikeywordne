@@ -9,6 +9,7 @@ import mongoose from 'mongoose'
 import { errorHandler } from '@saigon/common'
 import { NotFoundError } from '@saigon/common'
 import { currentUser } from './auth/service/checkAuth';
+import KeywordProcess from './crawler/model/versionProcess';
 dotenv.config()
 const app = express()
 
@@ -36,7 +37,15 @@ app.use(errorHandler);
 const start = async () => {
     await mongoose.connect(process.env.MONGO_URI!, {
     });
- 
+    var versionProcessing = await KeywordProcess.findOne({})
+    if(!versionProcessing){
+        const insert = KeywordProcess.build({
+            keywordProcessed:0,
+            keywordVersion:0
+        })
+        await insert.save()
+        versionProcessing = await KeywordProcess.findOne({})
+    }
 }
 interface UserPayload{
     id:string,
