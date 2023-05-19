@@ -9,6 +9,7 @@ module.exports = {
     name   : "crawler",
     script : "npm",
     args:"run crawler",
+    exp_backoff_restart_delay: 100
 
 
   },
