@@ -45,11 +45,11 @@ export const  tiktokProfile = async(indexCookie:number)=>{
             await processVersionService({versionProcessing,keywordStoreLength})
         }else{
             if(job.data.addQueued<sumQueued){
+                queueKeyWordApi.add({...job.data,addQueued:job.data.addQueued+1})
+                ordinalCookie >++
                 if( ordinalCookie > 28){
                     ordinalCookie=0
                 }
-                queueKeyWordApi.add({...job.data,addQueued:job.data.addQueued+1})
-                ordinalCookie >++
             }else{
                 let insert = KeywordError.build({
                     ...job.data
