@@ -47,7 +47,7 @@ export const  tiktokProfile = async(indexCookie:number)=>{
             if(job.data.addQueued<sumQueued){
                 queueKeyWordApi.add({...job.data,addQueued:job.data.addQueued+1})
                 ordinalCookie++
-                if( ordinalCookie > 28){
+                if( ordinalCookie > 21){
                     ordinalCookie=0
                 }
             }else{
