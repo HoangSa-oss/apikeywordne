@@ -35,7 +35,7 @@ export const  tiktokProfile = async(indexCookie:number)=>{
         let arrayData = await keywordFuntion({ordinalCookie:ordinalCookie,browser:browser,job:job,indexCookie:indexCookie})
         console.log(arrayData.length)
         if(arrayData.length>200){
-            arrayData.map(async(x)=>{
+            arrayData.map(async(x:any)=>{
                     const insert =UrlPost.build({...job.data,...x})
                     await insert.save()
             })
