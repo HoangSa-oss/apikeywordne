@@ -93,6 +93,6 @@ export default async function workkeyFunction ({indexCookie,job,browser,ordinalC
  } catch (error) {
    console.log(error)
 }
-                  let arrayData = [] ;
+                  let arrayData:any = [] ;
                      return arrayData
                 }
